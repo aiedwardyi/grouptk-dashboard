@@ -65,9 +65,9 @@ const translations: Record<Language, Translations> = {
     },
     hero: {
       badge: 'IT Development Portfolio',
-      title: 'Our',
-      titleHighlight: 'Project Showcase',
-      subtitle: 'A comprehensive overview of the websites, applications, and dashboards developed by our expert team.',
+      title: 'Group TK',
+      titleHighlight: 'World Enterprise',
+      subtitle: 'A comprehensive overview of our companies developed and operated by our expert team.',
     },
     stats: {
       totalProjects: 'Total Projects',
@@ -118,9 +118,9 @@ const translations: Record<Language, Translations> = {
     },
     hero: {
       badge: 'IT 개발 포트폴리오',
-      title: '우리의',
-      titleHighlight: '프로젝트 쇼케이스',
-      subtitle: '저희 전문 팀이 개발한 웹사이트, 애플리케이션 및 대시보드에 대한 종합적인 개요입니다.',
+      title: 'Group TK',
+      titleHighlight: 'World Enterprise',
+      subtitle: '저희 전문 팀이 개발하고 운영하는 회사들에 대한 종합적인 개요입니다.',
     },
     stats: {
       totalProjects: '전체 프로젝트',
