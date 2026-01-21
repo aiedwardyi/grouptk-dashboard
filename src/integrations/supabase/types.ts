@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      projects: {
+        Row: {
+          category: string
+          category_color: string
+          category_ko: string
+          completion: number
+          created_at: string
+          description: string
+          description_ko: string
+          documents: Json
+          editor_url: string
+          github_url: string
+          id: string
+          thumbnail_url: string
+          title: string
+          title_ko: string
+          updated_at: string
+          website_url: string
+        }
+        Insert: {
+          category: string
+          category_color?: string
+          category_ko: string
+          completion?: number
+          created_at?: string
+          description: string
+          description_ko: string
+          documents?: Json
+          editor_url?: string
+          github_url?: string
+          id?: string
+          thumbnail_url?: string
+          title: string
+          title_ko: string
+          updated_at?: string
+          website_url?: string
+        }
+        Update: {
+          category?: string
+          category_color?: string
+          category_ko?: string
+          completion?: number
+          created_at?: string
+          description?: string
+          description_ko?: string
+          documents?: Json
+          editor_url?: string
+          github_url?: string
+          id?: string
+          thumbnail_url?: string
+          title?: string
+          title_ko?: string
+          updated_at?: string
+          website_url?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

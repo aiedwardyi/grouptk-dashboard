@@ -7,17 +7,19 @@ import { AdminEditModal } from './AdminEditModal';
 import { AdminLoginModal } from './AdminLoginModal';
 import { Button } from '@/components/ui/button';
 import { Plus, TrendingUp, ShieldCheck, LogOut, Loader2 } from 'lucide-react';
-import { sampleProjects } from '@/data/sampleProjects';
+import { useProjects } from '@/hooks/useProjects';
 import { toast } from 'sonner';
 
 export const ProjectsSection = () => {
   const { t, language } = useLanguage();
-  const { user, isAdmin, isLoading, signOut } = useAuth();
-  const [projects, setProjects] = useState<Project[]>(sampleProjects);
+  const { isAdmin, isLoading: authLoading, signOut } = useAuth();
+  const { projects, isLoading: projectsLoading, addProject, updateProject, deleteProject } = useProjects();
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewProject, setIsNewProject] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const isLoading = authLoading || projectsLoading;
 
   const handleEdit = (project: Project) => {
     setEditingProject(project);
@@ -31,16 +33,26 @@ export const ProjectsSection = () => {
     setIsModalOpen(true);
   };
 
-  const handleSave = (updatedProject: Project) => {
+  const handleSave = async (updatedProject: Project) => {
+    let success: boolean;
     if (isNewProject) {
-      setProjects([...projects, updatedProject]);
+      success = await addProject(updatedProject);
+      if (success) {
+        toast.success(language === 'en' ? 'Project added successfully' : '프로젝트가 추가되었습니다');
+      }
     } else {
-      setProjects(projects.map((p) => (p.id === updatedProject.id ? updatedProject : p)));
+      success = await updateProject(updatedProject);
+      if (success) {
+        toast.success(language === 'en' ? 'Project updated successfully' : '프로젝트가 업데이트되었습니다');
+      }
     }
   };
 
-  const handleDelete = (projectId: string) => {
-    setProjects(projects.filter((p) => p.id !== projectId));
+  const handleDelete = async (projectId: string) => {
+    const success = await deleteProject(projectId);
+    if (success) {
+      toast.success(language === 'en' ? 'Project deleted successfully' : '프로젝트가 삭제되었습니다');
+    }
   };
 
   const handleSignOut = async () => {
