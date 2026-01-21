@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { Project } from '@/types/Project';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { ProjectCard } from './ProjectCard';
 import { AdminEditModal } from './AdminEditModal';
+import { AdminLoginModal } from './AdminLoginModal';
 import { Button } from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
-import { Plus, TrendingUp } from 'lucide-react';
+import { Plus, TrendingUp, ShieldCheck, LogOut, Loader2 } from 'lucide-react';
 import { sampleProjects } from '@/data/sampleProjects';
+import { toast } from 'sonner';
 
 export const ProjectsSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const { user, isAdmin, isLoading, signOut } = useAuth();
   const [projects, setProjects] = useState<Project[]>(sampleProjects);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewProject, setIsNewProject] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleEdit = (project: Project) => {
     setEditingProject(project);
@@ -41,6 +43,19 @@ export const ProjectsSection = () => {
     setProjects(projects.filter((p) => p.id !== projectId));
   };
 
+  const handleSignOut = async () => {
+    await signOut();
+    toast.success(language === 'en' ? 'Signed out successfully' : '로그아웃되었습니다');
+  };
+
+  const handleAdminClick = () => {
+    if (isAdmin) {
+      // Already admin, do nothing (they can use admin features)
+      return;
+    }
+    setIsLoginModalOpen(true);
+  };
+
   return (
     <section className="py-16 relative">
       <div className="container mx-auto px-6">
@@ -54,17 +69,40 @@ export const ProjectsSection = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Admin Toggle */}
-            <div className="flex items-center gap-2">
-              <Switch
-                id="admin-mode"
-                checked={isAdmin}
-                onCheckedChange={setIsAdmin}
-              />
-              <Label htmlFor="admin-mode" className="text-sm text-muted-foreground cursor-pointer">
+            {/* Admin Authentication Controls */}
+            {isLoading ? (
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Loader2 className="w-4 h-4 animate-spin" />
+              </div>
+            ) : isAdmin ? (
+              <>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                  <ShieldCheck className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium text-primary">
+                    {t.projects.adminMode}
+                  </span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  {language === 'en' ? 'Sign Out' : '로그아웃'}
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleAdminClick}
+                className="gap-2 border-primary/30 text-primary hover:bg-primary/10"
+              >
+                <ShieldCheck className="w-4 h-4" />
                 {t.projects.adminMode}
-              </Label>
-            </div>
+              </Button>
+            )}
 
             {/* Add Project Button */}
             {isAdmin && (
@@ -92,6 +130,12 @@ export const ProjectsSection = () => {
           ))}
         </div>
       </div>
+
+      {/* Admin Login Modal */}
+      <AdminLoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
 
       {/* Edit Modal */}
       <AdminEditModal
