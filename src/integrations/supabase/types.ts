@@ -23,6 +23,7 @@ export type Database = {
           created_at: string
           description: string
           description_ko: string
+          display_order: number
           documents: Json
           editor_url: string
           github_url: string
@@ -41,6 +42,7 @@ export type Database = {
           created_at?: string
           description: string
           description_ko: string
+          display_order?: number
           documents?: Json
           editor_url?: string
           github_url?: string
@@ -59,6 +61,7 @@ export type Database = {
           created_at?: string
           description?: string
           description_ko?: string
+          display_order?: number
           documents?: Json
           editor_url?: string
           github_url?: string

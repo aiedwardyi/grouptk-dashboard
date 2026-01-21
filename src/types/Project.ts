@@ -22,4 +22,5 @@ export interface Project {
   categoryColor: CategoryColor;
   completion: number; // 0-100
   documents: ProjectDocument[];
+  displayOrder: number;
 }

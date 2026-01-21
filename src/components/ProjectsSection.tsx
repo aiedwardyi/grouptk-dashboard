@@ -3,23 +3,50 @@ import { Project } from '@/types/Project';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { ProjectCard } from './ProjectCard';
+import { SortableProjectCard } from './SortableProjectCard';
 import { AdminEditModal } from './AdminEditModal';
 import { AdminLoginModal } from './AdminLoginModal';
 import { Button } from '@/components/ui/button';
 import { Plus, TrendingUp, ShieldCheck, LogOut, Loader2 } from 'lucide-react';
 import { useProjects } from '@/hooks/useProjects';
 import { toast } from 'sonner';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+} from '@dnd-kit/sortable';
 
 export const ProjectsSection = () => {
   const { t, language } = useLanguage();
   const { isAdmin, isLoading: authLoading, signOut } = useAuth();
-  const { projects, isLoading: projectsLoading, addProject, updateProject, deleteProject } = useProjects();
+  const { projects, isLoading: projectsLoading, addProject, updateProject, deleteProject, reorderProjects } = useProjects();
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewProject, setIsNewProject] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const isLoading = authLoading || projectsLoading;
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const handleEdit = (project: Project) => {
     setEditingProject(project);
@@ -62,10 +89,28 @@ export const ProjectsSection = () => {
 
   const handleAdminClick = () => {
     if (isAdmin) {
-      // Already admin, do nothing (they can use admin features)
       return;
     }
     setIsLoginModalOpen(true);
+  };
+
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const oldIndex = projects.findIndex((p) => p.id === active.id);
+      const newIndex = projects.findIndex((p) => p.id === over.id);
+
+      const reorderedProjects = arrayMove(projects, oldIndex, newIndex).map((p, idx) => ({
+        ...p,
+        displayOrder: idx + 1,
+      }));
+
+      const success = await reorderProjects(reorderedProjects);
+      if (success) {
+        toast.success(language === 'en' ? 'Order saved' : '순서가 저장되었습니다');
+      }
+    }
   };
 
   return (
@@ -127,20 +172,45 @@ export const ProjectsSection = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              style={{ animationDelay: `${index * 0.1}s` }}
+        {isAdmin ? (
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={projects.map((p) => p.id)}
+              strategy={rectSortingStrategy}
             >
-              <ProjectCard
-                project={project}
-                onEdit={handleEdit}
-                isAdmin={isAdmin}
-              />
-            </div>
-          ))}
-        </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects.map((project, index) => (
+                  <SortableProjectCard
+                    key={project.id}
+                    project={project}
+                    onEdit={handleEdit}
+                    isAdmin={isAdmin}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <ProjectCard
+                  project={project}
+                  onEdit={handleEdit}
+                  isAdmin={isAdmin}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Admin Login Modal */}

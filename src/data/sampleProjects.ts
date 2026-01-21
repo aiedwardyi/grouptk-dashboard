@@ -18,6 +18,7 @@ export const sampleProjects: Project[] = [
     documents: [
       { id: 'd1', name: 'Project Proposal', url: '/brochure.pdf', type: 'pdf' },
     ],
+    displayOrder: 1,
   },
   {
     id: '2',
@@ -34,6 +35,7 @@ export const sampleProjects: Project[] = [
     categoryColor: 'purple',
     completion: 85,
     documents: [],
+    displayOrder: 2,
   },
   {
     id: '3',
@@ -53,6 +55,7 @@ export const sampleProjects: Project[] = [
       { id: 'd2', name: 'Security Audit', url: '/brochure.pdf', type: 'pdf' },
       { id: 'd3', name: 'App Screenshot', url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop', type: 'image' },
     ],
+    displayOrder: 3,
   },
   {
     id: '4',
@@ -69,6 +72,7 @@ export const sampleProjects: Project[] = [
     categoryColor: 'green',
     completion: 95,
     documents: [],
+    displayOrder: 4,
   },
   {
     id: '5',
@@ -87,6 +91,7 @@ export const sampleProjects: Project[] = [
     documents: [
       { id: 'd4', name: 'HIPAA Compliance', url: '/brochure.pdf', type: 'pdf' },
     ],
+    displayOrder: 5,
   },
   {
     id: '6',
@@ -103,5 +108,6 @@ export const sampleProjects: Project[] = [
     categoryColor: 'purple',
     completion: 40,
     documents: [],
+    displayOrder: 6,
   },
 ];

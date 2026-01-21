@@ -19,6 +19,7 @@ interface DbProject {
   category_color: string;
   completion: number;
   documents: Json;
+  display_order: number;
   created_at: string;
   updated_at: string;
 }
@@ -38,6 +39,7 @@ const mapDbToProject = (db: DbProject): Project => ({
   categoryColor: db.category_color as CategoryColor,
   completion: db.completion,
   documents: db.documents as unknown as ProjectDocument[],
+  displayOrder: db.display_order,
 });
 
 const mapProjectToDb = (project: Project) => ({
@@ -54,6 +56,7 @@ const mapProjectToDb = (project: Project) => ({
   category_color: project.categoryColor,
   completion: project.completion,
   documents: project.documents as unknown as Json,
+  display_order: project.displayOrder,
 });
 
 export const useProjects = () => {
@@ -67,7 +70,7 @@ export const useProjects = () => {
       const { data, error } = await supabase
         .from('projects')
         .select('*')
-        .order('created_at', { ascending: true })
+        .order('display_order', { ascending: true })
         .order('id', { ascending: true }); // Secondary sort for consistent ordering
 
       if (error) throw error;
@@ -83,7 +86,12 @@ export const useProjects = () => {
 
   const addProject = async (project: Project): Promise<boolean> => {
     try {
-      const dbProject = mapProjectToDb(project);
+      // Get max display_order and add 1
+      const maxOrder = projects.reduce((max, p) => Math.max(max, p.displayOrder), 0);
+      const dbProject = {
+        ...mapProjectToDb(project),
+        display_order: maxOrder + 1,
+      };
       const { error } = await supabase
         .from('projects')
         .insert(dbProject);
@@ -136,17 +144,50 @@ export const useProjects = () => {
     }
   };
 
+  const reorderProjects = async (reorderedProjects: Project[]): Promise<boolean> => {
+    try {
+      // Update local state immediately for smooth UX
+      setProjects(reorderedProjects);
+
+      // Batch update all display_order values
+      const updates = reorderedProjects.map((project, index) => ({
+        id: project.id,
+        display_order: index + 1,
+      }));
+
+      // Update each project's display_order
+      for (const update of updates) {
+        const { error } = await supabase
+          .from('projects')
+          .update({ display_order: update.display_order })
+          .eq('id', update.id);
+
+        if (error) throw error;
+      }
+
+      return true;
+    } catch (err) {
+      console.error('Error reordering projects:', err);
+      toast.error('Failed to save order');
+      // Revert to original order on error
+      await fetchProjects();
+      return false;
+    }
+  };
+
   useEffect(() => {
     fetchProjects();
   }, []);
 
   return {
     projects,
+    setProjects,
     isLoading,
     error,
     addProject,
     updateProject,
     deleteProject,
+    reorderProjects,
     refetch: fetchProjects,
   };
 };
