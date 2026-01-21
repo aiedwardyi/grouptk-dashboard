@@ -129,7 +129,7 @@ const translations: Record<Language, Translations> = {
       marketCap: "시가 총액",
     },
     projects: {
-      sectionTitle: "프로젝트 포트폴리오",
+      sectionTitle: "회사 포트폴리오",
       edit: "편집",
       github: "GitHub",
       showMore: "더 보기",
