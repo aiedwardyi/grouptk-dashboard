@@ -8,8 +8,9 @@ import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
-import { Plus, Trash2, FileText, Image } from 'lucide-react';
+import { Trash2, FileText, Image } from 'lucide-react';
 import { ImageUpload } from './ImageUpload';
+import { DocumentUpload } from './DocumentUpload';
 
 interface AdminEditModalProps {
   project: Project | null;
@@ -25,9 +26,6 @@ const categoryColors: CategoryColor[] = ['green', 'purple', 'orange', 'blue', 'p
 export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isNew }: AdminEditModalProps) => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState<Project | null>(null);
-  const [newDocName, setNewDocName] = useState('');
-  const [newDocUrl, setNewDocUrl] = useState('');
-  const [newDocType, setNewDocType] = useState<'pdf' | 'image'>('pdf');
 
   useEffect(() => {
     if (project) {
@@ -58,21 +56,11 @@ export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isN
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleAddDocument = () => {
-    if (newDocName && newDocUrl) {
-      const newDoc: ProjectDocument = {
-        id: Date.now().toString(),
-        name: newDocName,
-        url: newDocUrl,
-        type: newDocType,
-      };
-      setFormData({
-        ...formData,
-        documents: [...formData.documents, newDoc],
-      });
-      setNewDocName('');
-      setNewDocUrl('');
-    }
+  const handleAddDocument = (doc: ProjectDocument) => {
+    setFormData({
+      ...formData,
+      documents: [...formData.documents, doc],
+    });
   };
 
   const handleRemoveDocument = (docId: string) => {
@@ -262,34 +250,7 @@ export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isN
             )}
 
             {/* Add New Document */}
-            <div className="grid grid-cols-4 gap-2">
-              <Input
-                placeholder={t.admin.documentName}
-                value={newDocName}
-                onChange={(e) => setNewDocName(e.target.value)}
-                className="bg-secondary/50 border-border/50"
-              />
-              <Input
-                placeholder={t.admin.documentUrl}
-                value={newDocUrl}
-                onChange={(e) => setNewDocUrl(e.target.value)}
-                className="bg-secondary/50 border-border/50 col-span-2"
-              />
-              <div className="flex gap-2">
-                <Select value={newDocType} onValueChange={(v) => setNewDocType(v as 'pdf' | 'image')}>
-                  <SelectTrigger className="bg-secondary/50 border-border/50 w-20">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="pdf">PDF</SelectItem>
-                    <SelectItem value="image">Image</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Button variant="secondary" size="icon" onClick={handleAddDocument}>
-                  <Plus className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
+            <DocumentUpload onAdd={handleAddDocument} />
           </div>
         </div>
 
