@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Project } from '@/types/Project';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { CategoryBadge } from './CategoryBadge';
-import { ProgressStars } from './ProgressStars';
+import { ProgressBar } from './ProgressBar';
 import { Button } from '@/components/ui/button';
 import { Edit, Github, ChevronDown, ChevronUp, FileText, Image, ExternalLink } from 'lucide-react';
 
@@ -82,12 +82,8 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
         </div>
 
         {/* Progress */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground">{t.projects.progress}</span>
-            <ProgressStars completion={project.completion} />
-          </div>
-          <span className="text-xs font-medium text-primary">{project.completion}%</span>
+        <div className="mb-4">
+          <ProgressBar completion={project.completion} />
         </div>
 
         {/* Action Buttons */}
