@@ -1,6 +1,6 @@
 # Group TK - World Enterprise
 
-IT Development Portfolio - A comprehensive overview of companies developed and operated by our expert team.
+Company Portfolio - A comprehensive overview of companies developed and operated by our expert team.
 
 ## Technologies
 
