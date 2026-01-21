@@ -64,7 +64,7 @@ const translations: Record<Language, Translations> = {
       brochure: "Company Brochure",
     },
     hero: {
-      badge: "Company Portfolio",
+      badge: "IT Development Portfolio",
       title: "Group TK",
       titleHighlight: "World Enterprise",
       subtitle: "A comprehensive overview of companies developed and operated by our expert team.",
@@ -76,7 +76,7 @@ const translations: Record<Language, Translations> = {
       marketCap: "Market Cap",
     },
     projects: {
-      sectionTitle: "Project Portfolio",
+      sectionTitle: "Company Portfolio",
       edit: "Edit",
       github: "GitHub",
       showMore: "Show more",
