@@ -32,16 +32,16 @@ export const SortableProjectCard = ({ project, onEdit, isAdmin, index }: Sortabl
     <div
       ref={setNodeRef}
       style={style}
-      className={`relative ${isDragging ? 'opacity-50' : ''}`}
+      className={`relative group ${isDragging ? 'opacity-50' : ''}`}
     >
       {isAdmin && (
         <div
           {...attributes}
           {...listeners}
-          className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 cursor-grab active:cursor-grabbing p-2 rounded-lg bg-secondary/80 border border-border/50 opacity-0 hover:opacity-100 transition-opacity group-hover:opacity-100"
+          className="absolute -left-8 top-1/2 -translate-y-1/2 z-10 cursor-grab active:cursor-grabbing p-2 rounded-lg bg-secondary border border-border opacity-0 group-hover:opacity-100 transition-opacity"
           style={{ opacity: isDragging ? 1 : undefined }}
         >
-          <GripVertical className="w-4 h-4 text-muted-foreground" />
+          <GripVertical className="w-5 h-5 text-muted-foreground" />
         </div>
       )}
       <ProjectCard
