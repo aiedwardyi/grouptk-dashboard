@@ -117,7 +117,7 @@ const translations: Record<Language, Translations> = {
       brochure: "회사 브로슈어",
     },
     hero: {
-      badge: "IT 개발 포트폴리오",
+      badge: "회사 포트폴리오",
       title: "Group TK",
       titleHighlight: "World Enterprise",
       subtitle: "저희 전문 팀이 개발하고 운영하는 회사들에 대한 종합적인 개요입니다.",
