@@ -30,7 +30,7 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
         href={project.websiteUrl} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="block relative overflow-hidden aspect-video bg-muted"
+        className="block relative overflow-hidden aspect-video bg-image-bg"
       >
         <img
           src={project.thumbnailUrl}

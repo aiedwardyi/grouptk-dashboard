@@ -27,6 +27,9 @@
     --muted: 220 15% 90%;
     --muted-foreground: 220 10% 45%;
 
+    /* Image container background - dark gray in light mode */
+    --image-bg: 220 15% 35%;
+
     --accent: 241 80% 55%;
     --accent-foreground: 0 0% 100%;
 
@@ -88,6 +91,9 @@
 
     --muted: 225 20% 18%;
     --muted-foreground: 215 20% 65%;
+
+    /* Image container background - uses muted in dark mode */
+    --image-bg: 225 20% 18%;
 
     --accent: 241 80% 75%;
     --accent-foreground: 225 30% 8%;
