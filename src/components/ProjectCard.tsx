@@ -30,12 +30,12 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
         href={project.websiteUrl} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="block relative overflow-hidden aspect-video"
+        className="block relative overflow-hidden aspect-video bg-muted"
       >
         <img
           src={project.thumbnailUrl}
           alt={title}
-          className="w-full h-full object-contain bg-card transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary/20">
