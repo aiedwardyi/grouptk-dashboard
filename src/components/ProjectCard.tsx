@@ -24,11 +24,6 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
 
   return (
     <div className="glass-card glow-border overflow-hidden group hover:shadow-glow transition-all duration-500 animate-fade-in">
-      {/* Category Badge - positioned at top right */}
-      <div className="absolute top-4 right-4 z-10">
-        <CategoryBadge category={category} color={project.categoryColor} />
-      </div>
-
       {/* Thumbnail */}
       <a 
         href={project.websiteUrl} 
@@ -49,17 +44,20 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
 
       {/* Content */}
       <div className="p-5">
-        {/* Title */}
-        <a 
-          href={project.websiteUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block mb-2"
-        >
-          <h3 className="text-lg font-bold font-display text-foreground hover:text-primary transition-colors duration-300">
-            {title}
-          </h3>
-        </a>
+        {/* Title with Category Badge */}
+        <div className="flex items-center gap-2 mb-2">
+          <a 
+            href={project.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 min-w-0"
+          >
+            <h3 className="text-lg font-bold font-display text-foreground hover:text-primary transition-colors duration-300 truncate">
+              {title}
+            </h3>
+          </a>
+          <CategoryBadge category={category} color={project.categoryColor} />
+        </div>
 
         {/* Description */}
         <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
