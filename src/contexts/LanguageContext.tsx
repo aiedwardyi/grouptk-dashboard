@@ -76,7 +76,7 @@ const translations: Record<Language, Translations> = {
       marketCap: "Market Cap",
     },
     projects: {
-      sectionTitle: "Project Portfolio",
+      sectionTitle: "Company Portfolio",
       edit: "Edit",
       github: "GitHub",
       showMore: "Show more",
