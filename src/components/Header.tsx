@@ -2,6 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { FileText } from 'lucide-react';
 import { LanguageToggle } from './LanguageToggle';
+import grouptKLogo from '@/assets/grouptk-logo.png';
 
 export const Header = () => {
   const { t } = useLanguage();
@@ -11,9 +12,11 @@ export const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center shadow-glow-sm">
-              <span className="text-xl font-bold font-display text-primary-foreground">TK</span>
-            </div>
+            <img 
+              src={grouptKLogo} 
+              alt="Group TK Logo" 
+              className="w-10 h-10 rounded-lg object-contain"
+            />
             <div>
               <h1 className="text-xl font-bold font-display text-foreground">{t.header.title}</h1>
               <p className="text-xs text-muted-foreground">{t.header.subtitle}</p>

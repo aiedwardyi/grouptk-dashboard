@@ -8,7 +8,69 @@
 
 @layer base {
   :root {
-    /* Dark theme is default - matching reference images */
+    /* Light theme */
+    --background: 220 20% 97%;
+    --foreground: 225 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 225 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 30% 15%;
+
+    --primary: 241 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 225 30% 15%;
+
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 241 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 241 80% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for badges */
+    --badge-green: 145 70% 40%;
+    --badge-purple: 241 80% 55%;
+    --badge-orange: 25 95% 50%;
+    --badge-blue: 210 90% 50%;
+    --badge-pink: 330 80% 55%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(241 80% 55%) 0%, hsl(260 85% 50%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 97%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(241 80% 55% / 0.1) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-card: 0 4px 24px -4px hsl(220 30% 30% / 0.1);
+    --shadow-glow: 0 0 40px -10px hsl(241 80% 55% / 0.2);
+
+    /* Progress star colors */
+    --star-filled: 45 95% 50%;
+    --star-empty: 220 15% 80%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 225 30% 15%;
+    --sidebar-primary: 241 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 225 30% 15%;
+    --sidebar-border: 220 15% 85%;
+    --sidebar-ring: 241 80% 55%;
+  }
+
+  .dark {
+    /* Dark theme */
     --background: 225 30% 8%;
     --foreground: 210 40% 98%;
 
@@ -30,14 +92,12 @@
     --accent: 241 80% 75%;
     --accent-foreground: 225 30% 8%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 225 20% 20%;
     --input: 225 20% 20%;
     --ring: 241 80% 75%;
-
-    --radius: 0.75rem;
 
     /* Custom colors for badges */
     --badge-green: 145 70% 45%;
@@ -68,45 +128,6 @@
     --sidebar-border: 225 20% 20%;
     --sidebar-ring: 241 80% 75%;
   }
-
-  .dark {
-    --background: 225 30% 8%;
-    --foreground: 210 40% 98%;
-
-    --card: 225 25% 12%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 225 25% 10%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 241 80% 75%;
-    --primary-foreground: 225 30% 8%;
-
-    --secondary: 225 25% 16%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 225 20% 18%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 241 80% 75%;
-    --accent-foreground: 225 30% 8%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 225 20% 20%;
-    --input: 225 20% 20%;
-    --ring: 241 80% 75%;
-
-    --sidebar-background: 225 30% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 241 80% 75%;
-    --sidebar-primary-foreground: 225 30% 8%;
-    --sidebar-accent: 225 25% 16%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 225 20% 20%;
-    --sidebar-ring: 241 80% 75%;
-  }
 }
 
 @layer base {
@@ -127,6 +148,9 @@
 @layer components {
   .glass-card {
     @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+
+  .dark .glass-card {
     background: linear-gradient(180deg, hsl(225 25% 14% / 0.9) 0%, hsl(225 25% 10% / 0.95) 100%);
   }
 
