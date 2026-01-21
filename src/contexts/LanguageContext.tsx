@@ -15,10 +15,10 @@ interface Translations {
     subtitle: string;
   };
   stats: {
-    totalProjects: string;
-    websites: string;
-    dashboards: string;
-    apps: string;
+    since: string;
+    fundsRaised: string;
+    users: string;
+    marketCap: string;
   };
   projects: {
     sectionTitle: string;
@@ -70,10 +70,10 @@ const translations: Record<Language, Translations> = {
       subtitle: "A comprehensive overview of companies developed and operated by our expert team.",
     },
     stats: {
-      totalProjects: "Total Projects",
-      websites: "Websites",
-      dashboards: "Dashboards",
-      apps: "Applications",
+      since: "Since",
+      fundsRaised: "Funds Raised",
+      users: "Users",
+      marketCap: "Market Cap",
     },
     projects: {
       sectionTitle: "Project Portfolio",
@@ -123,10 +123,10 @@ const translations: Record<Language, Translations> = {
       subtitle: "저희 전문 팀이 개발하고 운영하는 회사들에 대한 종합적인 개요입니다.",
     },
     stats: {
-      totalProjects: "전체 프로젝트",
-      websites: "웹사이트",
-      dashboards: "대시보드",
-      apps: "애플리케이션",
+      since: "설립",
+      fundsRaised: "투자 유치",
+      users: "사용자",
+      marketCap: "시가 총액",
     },
     projects: {
       sectionTitle: "프로젝트 포트폴리오",

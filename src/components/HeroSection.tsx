@@ -1,14 +1,14 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Globe, LayoutDashboard, Smartphone, Sparkles } from 'lucide-react';
+import { Calendar, TrendingUp, Users, Building2, Sparkles } from 'lucide-react';
 
 export const HeroSection = () => {
   const { t, language } = useLanguage();
 
   const stats = [
-    { icon: Sparkles, value: '15+', label: t.stats.totalProjects },
-    { icon: Globe, value: '8', label: t.stats.websites },
-    { icon: LayoutDashboard, value: '4', label: t.stats.dashboards },
-    { icon: Smartphone, value: '3', label: t.stats.apps },
+    { icon: Calendar, value: '1982', label: t.stats.since },
+    { icon: TrendingUp, value: '$167M', label: t.stats.fundsRaised },
+    { icon: Users, value: '70M+', label: t.stats.users },
+    { icon: Building2, value: '$2.5B', label: t.stats.marketCap },
   ];
 
   return (
