@@ -64,7 +64,7 @@ const translations: Record<Language, Translations> = {
       brochure: "Company Brochure",
     },
     hero: {
-      badge: "IT Development Portfolio",
+      badge: "Company Portfolio",
       title: "Group TK",
       titleHighlight: "World Enterprise",
       subtitle: "A comprehensive overview of companies developed and operated by our expert team.",
