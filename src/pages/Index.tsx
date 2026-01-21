@@ -10,12 +10,12 @@ const Index = () => {
     <LanguageProvider>
       <AuthProvider>
         <div className="min-h-screen bg-background relative">
-          {/* Background Grid Pattern */}
-          <div className="fixed inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+          {/* Background Pattern - Grid for dark, gradient for light */}
+          <div className="fixed inset-0 dark:bg-grid-pattern dark:opacity-20 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
           
           {/* Ambient Glow Effects */}
-          <div className="fixed top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-          <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+          <div className="fixed top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+          <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-accent/5 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
           
           {/* Content */}
           <div className="relative z-10">

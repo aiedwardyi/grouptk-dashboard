@@ -72,6 +72,7 @@ export default {
           filled: "hsl(var(--star-filled))",
           empty: "hsl(var(--star-empty))",
         },
+        "image-bg": "hsl(var(--image-bg))",
       },
       borderRadius: {
         lg: "var(--radius)",
