@@ -46,6 +46,7 @@ export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isN
         categoryColor: 'green',
         completion: 0,
         documents: [],
+        displayOrder: 0,
       });
     }
   }, [project, isNew]);
