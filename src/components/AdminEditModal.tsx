@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Plus, Trash2, FileText, Image } from 'lucide-react';
+import { ImageUpload } from './ImageUpload';
 
 interface AdminEditModalProps {
   project: Project | null;
@@ -138,8 +139,17 @@ export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isN
             </div>
           </div>
 
+          {/* Thumbnail Upload */}
+          <div className="space-y-2">
+            <Label>{t.admin.thumbnailUrl}</Label>
+            <ImageUpload
+              currentUrl={formData.thumbnailUrl}
+              onUpload={(url) => handleChange('thumbnailUrl', url)}
+            />
+          </div>
+
           {/* URL Fields */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label>{t.admin.websiteUrl}</Label>
               <Input
@@ -148,17 +158,6 @@ export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isN
                 className="bg-secondary/50 border-border/50"
               />
             </div>
-            <div className="space-y-2">
-              <Label>{t.admin.thumbnailUrl}</Label>
-              <Input
-                value={formData.thumbnailUrl}
-                onChange={(e) => handleChange('thumbnailUrl', e.target.value)}
-                className="bg-secondary/50 border-border/50"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>{t.admin.editorUrl}</Label>
               <Input
@@ -176,7 +175,6 @@ export const AdminEditModal = ({ project, isOpen, onClose, onSave, onDelete, isN
               />
             </div>
           </div>
-
           {/* Category and Color */}
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
