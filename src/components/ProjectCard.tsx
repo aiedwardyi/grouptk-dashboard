@@ -15,6 +15,7 @@ interface ProjectCardProps {
 export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
   const { language, t } = useLanguage();
   const [showMore, setShowMore] = useState(false);
+  const [descriptionExpanded, setDescriptionExpanded] = useState(false);
 
   const title = language === 'ko' ? project.titleKo : project.title;
   const description = language === 'ko' ? project.descriptionKo : project.description;
@@ -60,9 +61,19 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
         </div>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-          {description}
-        </p>
+        <div className="mb-4">
+          <p className={`text-sm text-muted-foreground ${descriptionExpanded ? '' : 'line-clamp-2'}`}>
+            {description}
+          </p>
+          {description && description.length > 80 && (
+            <button
+              onClick={() => setDescriptionExpanded(!descriptionExpanded)}
+              className="text-xs text-primary hover:text-primary/80 mt-1 transition-colors duration-200"
+            >
+              {descriptionExpanded ? t.projects.showLess : t.projects.showMore}
+            </button>
+          )}
+        </div>
 
         {/* Progress */}
         <div className="flex items-center justify-between mb-4">
