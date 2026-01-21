@@ -62,13 +62,19 @@ export const ProjectCard = ({ project, onEdit, isAdmin }: ProjectCardProps) => {
 
         {/* Description */}
         <div className="mb-4">
-          <p className={`text-sm text-muted-foreground ${descriptionExpanded ? '' : 'line-clamp-2'}`}>
-            {description}
-          </p>
+          <div 
+            className={`overflow-hidden transition-all duration-300 ease-out ${
+              descriptionExpanded ? 'max-h-96' : 'max-h-10'
+            }`}
+          >
+            <p className="text-sm text-muted-foreground">
+              {description}
+            </p>
+          </div>
           {description && description.length > 80 && (
             <button
               onClick={() => setDescriptionExpanded(!descriptionExpanded)}
-              className="text-xs text-primary hover:text-primary/80 mt-1 transition-colors duration-200"
+              className="text-xs text-primary hover:text-primary/80 mt-1 transition-colors duration-200 flex items-center gap-1"
             >
               {descriptionExpanded ? t.projects.showLess : t.projects.showMore}
             </button>
