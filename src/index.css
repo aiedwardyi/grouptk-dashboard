@@ -18,7 +18,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 225 30% 15%;
 
-    --primary: 241 80% 55%;
+    --primary: 210 90% 45%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 15% 92%;
@@ -30,7 +30,7 @@
     /* Image container background - dark gray in light mode */
     --image-bg: 220 15% 35%;
 
-    --accent: 241 80% 55%;
+    --accent: 210 90% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -38,25 +38,25 @@
 
     --border: 220 15% 85%;
     --input: 220 15% 85%;
-    --ring: 241 80% 55%;
+    --ring: 210 90% 45%;
 
     --radius: 0.75rem;
 
     /* Custom colors for badges */
     --badge-green: 145 70% 40%;
-    --badge-purple: 241 80% 55%;
+    --badge-purple: 210 90% 45%;
     --badge-orange: 25 95% 50%;
     --badge-blue: 210 90% 50%;
     --badge-pink: 330 80% 55%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(241 80% 55%) 0%, hsl(260 85% 50%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(210 90% 45%) 0%, hsl(220 85% 40%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 97%) 100%);
-    --gradient-glow: radial-gradient(ellipse at center, hsl(241 80% 55% / 0.1) 0%, transparent 70%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(210 90% 45% / 0.1) 0%, transparent 70%);
 
     /* Shadows */
     --shadow-card: 0 4px 24px -4px hsl(220 30% 30% / 0.1);
-    --shadow-glow: 0 0 40px -10px hsl(241 80% 55% / 0.2);
+    --shadow-glow: 0 0 40px -10px hsl(210 90% 45% / 0.2);
 
     /* Progress star colors */
     --star-filled: 45 95% 50%;
@@ -64,12 +64,12 @@
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 225 30% 15%;
-    --sidebar-primary: 241 80% 55%;
+    --sidebar-primary: 210 90% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 92%;
     --sidebar-accent-foreground: 225 30% 15%;
     --sidebar-border: 220 15% 85%;
-    --sidebar-ring: 241 80% 55%;
+    --sidebar-ring: 210 90% 45%;
   }
 
   .dark {
