@@ -67,7 +67,8 @@ export const useProjects = () => {
       const { data, error } = await supabase
         .from('projects')
         .select('*')
-        .order('created_at', { ascending: true });
+        .order('created_at', { ascending: true })
+        .order('id', { ascending: true }); // Secondary sort for consistent ordering
 
       if (error) throw error;
       
