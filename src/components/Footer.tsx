@@ -1,9 +1,10 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MapPin, Building2 } from 'lucide-react';
+import { MapPin } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
+import grouptKLogo from '@/assets/grouptk-logo.png';
 
 export const Footer = () => {
   const { t } = useLanguage();
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="py-12 border-t border-border/30 bg-card/30">
@@ -11,9 +12,11 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Company Info */}
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center shadow-glow-sm">
-              <span className="text-lg font-bold font-display text-primary-foreground">TK</span>
-            </div>
+            <img 
+              src={grouptKLogo} 
+              alt="Group TK Logo" 
+              className="w-12 h-12 rounded-xl object-contain"
+            />
             <div>
               <h3 className="text-lg font-bold font-display text-foreground">{t.header.title}</h3>
               <p className="text-sm text-muted-foreground">{t.header.subtitle}</p>
@@ -27,11 +30,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-6 border-t border-border/20 text-center">
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} Group TK. {t.footer.rights}
-          </p>
+        {/* Theme Toggle */}
+        <div className="mt-8 pt-6 border-t border-border/20 flex justify-center">
+          <ThemeToggle />
         </div>
       </div>
     </footer>
