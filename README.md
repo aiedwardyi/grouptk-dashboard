@@ -1,6 +1,6 @@
 # Group TK - World Enterprise
 
-Company Portfolio - A comprehensive overview of companies developed and operated by our expert team.
+Company's Internal Dashboard: Company Portfolio - A comprehensive overview of companies developed and operated by our expert team. 
 
 ## Technologies
 
