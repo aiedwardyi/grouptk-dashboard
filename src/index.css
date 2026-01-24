@@ -73,7 +73,7 @@
   }
 
   .dark {
-    /* Dark theme */
+    /* Dark theme - Turquoise/Cyan accent */
     --background: 225 30% 8%;
     --foreground: 210 40% 98%;
 
@@ -83,7 +83,7 @@
     --popover: 225 25% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 241 80% 75%;
+    --primary: 185 75% 50%;
     --primary-foreground: 225 30% 8%;
 
     --secondary: 225 25% 16%;
@@ -95,7 +95,7 @@
     /* Image container background - uses muted in dark mode */
     --image-bg: 225 20% 18%;
 
-    --accent: 241 80% 75%;
+    --accent: 185 75% 50%;
     --accent-foreground: 225 30% 8%;
 
     --destructive: 0 62.8% 30.6%;
@@ -103,23 +103,23 @@
 
     --border: 225 20% 20%;
     --input: 225 20% 20%;
-    --ring: 241 80% 75%;
+    --ring: 185 75% 50%;
 
     /* Custom colors for badges */
     --badge-green: 145 70% 45%;
-    --badge-purple: 241 80% 75%;
+    --badge-purple: 185 75% 50%;
     --badge-orange: 25 95% 55%;
-    --badge-blue: 210 90% 55%;
+    --badge-blue: 185 75% 55%;
     --badge-pink: 330 80% 60%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(241 80% 75%) 0%, hsl(260 85% 65%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(185 75% 50%) 0%, hsl(195 80% 45%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(225 25% 14%) 0%, hsl(225 25% 10%) 100%);
-    --gradient-glow: radial-gradient(ellipse at center, hsl(241 80% 75% / 0.15) 0%, transparent 70%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(185 75% 50% / 0.15) 0%, transparent 70%);
 
     /* Shadows */
-    --shadow-card: 0 4px 24px -4px hsl(241 80% 75% / 0.15);
-    --shadow-glow: 0 0 40px -10px hsl(241 80% 75% / 0.4);
+    --shadow-card: 0 4px 24px -4px hsl(185 75% 50% / 0.15);
+    --shadow-glow: 0 0 40px -10px hsl(185 75% 50% / 0.4);
 
     /* Progress star colors */
     --star-filled: 45 95% 55%;
@@ -127,12 +127,12 @@
 
     --sidebar-background: 225 30% 8%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 241 80% 75%;
+    --sidebar-primary: 185 75% 50%;
     --sidebar-primary-foreground: 225 30% 8%;
     --sidebar-accent: 225 25% 16%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 225 20% 20%;
-    --sidebar-ring: 241 80% 75%;
+    --sidebar-ring: 185 75% 50%;
   }
 }
 
@@ -169,7 +169,7 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, hsl(241 80% 75% / 0.3), transparent, hsl(241 80% 75% / 0.1));
+    background: linear-gradient(135deg, hsl(185 75% 50% / 0.3), transparent, hsl(185 75% 50% / 0.1));
     z-index: -1;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: xor;
@@ -178,14 +178,14 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(210 90% 55%) 0%, hsl(220 85% 50%) 50%, hsl(210 90% 55%) 100%);
+    background: linear-gradient(135deg, hsl(185 75% 55%) 0%, hsl(195 80% 50%) 50%, hsl(185 75% 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .dark .text-gradient {
-    background: linear-gradient(135deg, hsl(241 80% 80%) 0%, hsl(260 85% 70%) 50%, hsl(241 80% 80%) 100%);
+    background: linear-gradient(135deg, hsl(185 75% 55%) 0%, hsl(195 80% 50%) 50%, hsl(185 75% 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -219,10 +219,10 @@
 
 @keyframes pulse-glow {
   0%, 100% { 
-    box-shadow: 0 0 20px -5px hsl(241 80% 75% / 0.4);
+    box-shadow: 0 0 20px -5px hsl(185 75% 50% / 0.4);
   }
   50% { 
-    box-shadow: 0 0 30px -5px hsl(241 80% 75% / 0.6);
+    box-shadow: 0 0 30px -5px hsl(185 75% 50% / 0.6);
   }
 }
 
